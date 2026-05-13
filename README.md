@@ -4,6 +4,34 @@ A modern interactive **3D Video Cube Web App** built with pure HTML, CSS, and Ja
 
 ---
 
+![GitHub stars](https://img.shields.io/github/stars/whellcolor/cube?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/whellcolor/cube?style=for-the-badge)
+![License](https://img.shields.io/github/license/whellcolor/cube?style=for-the-badge)
+![Status](https://img.shields.io/badge/status-active-success?style=for-the-badge)
+
+---
+
+## 🚀 Live Demo
+
+👉 **[Launch Demo](https://whellcolor.github.io/cube/)**
+
+---
+
+## 🎥 Preview
+
+### 📸 UI Screenshot
+![Cube UI Preview](https://raw.githubusercontent.com/whellcolor/cube/main/assets/preview.png)
+
+---
+
+### 🎞️ 3D Cube Animation
+
+![Cube Demo GIF](https://raw.githubusercontent.com/whellcolor/cube/main/assets/cube-demo.gif)
+
+---
+
+---
+
 ## 🚀 Overview
 
 **Video Cube Generator PRO** is a creative web-based tool that transforms 6 videos into a fully interactive 3D cube.
@@ -17,50 +45,78 @@ Built for experimentation in:
 
 ---
 
-## ✨ Features
 
-### 🎬 Video System
-- Load videos via URL or device upload
-- Supports 6 cube faces:
-  - Front, Back, Left, Right, Top, Bottom
-- Auto-play loop rendering per face
 
-### 🧊 3D Cube Engine
-- CSS `transform-style: preserve-3d`
-- Infinite rotation animation
-- Manual drag rotation (mouse & touch)
-- Smooth perspective rendering
+## 🧊 Overview
 
-### 🎮 Interaction System
-- Drag to rotate cube in real-time
-- Play / Pause animation toggle
-- Example preview mode included
+**Video Cube Generator PRO** adalah aplikasi web interaktif untuk mengubah 6 video menjadi **3D rotating cube experience** berbasis browser.
 
-### 🔊 Sound Reactive Mode
-- Microphone-based animation scaling
-- Real-time volume analysis using Web Audio API
-- Dynamic visual response to audio input
-
-### 📤 Export System
-- Export full HTML file (offline ready)
-- Generate APK-ready WebView template
-- Portable single-file architecture
-
-### 🌐 Web3 Feature (Demo)
-- Integrated Reown AppKit
-- Ethereum transaction simulation (0.0001 ETH)
-- Wallet-ready connection support
+Dirancang untuk:
+- 🎬 Video interactive UI
+- 🧊 3D CSS engine learning
+- 📱 Mobile-first media experience
+- 🌐 WebView APK integration
+- ⚡ Experimental Web3 features
 
 ---
 
-## 🧠 Tech Stack
+## ✨ Features
 
-- HTML5
-- CSS3 (3D Transform & Animation)
-- Vanilla JavaScript
-- Web Audio API
-- Ethers.js
-- Reown AppKit (Wallet Integration)
+- 🎥 Input 6 video (URL / upload)
+- 🧊 3D rotating cube (CSS transform)
+- 🎮 Drag rotation (mouse + touch)
+- 🔊 Sound reactive animation
+- 📤 Export HTML offline
+- 📲 APK-ready WebView template
+- 🌐 Wallet connect (AppKit + Ethers.js)
+
+---
+
+## 🧠 Architecture Diagram
+
+```
+
+┌──────────────────────────────┐
+│        User Interface        │
+│  (HTML Inputs + Controls)    │
+└──────────────┬───────────────┘
+│
+▼
+┌──────────────────────────────┐
+│      Video Input Layer       │
+│ URL Input / File Upload      │
+└──────────────┬───────────────┘
+│
+▼
+┌──────────────────────────────┐
+│      Cube Generator Engine   │
+│  DOM Injection (6 Faces)     │
+└──────────────┬───────────────┘
+│
+┌─────────┴─────────┐
+▼                   ▼
+┌──────────────┐  ┌────────────────┐
+│ CSS 3D Engine│  │ Audio Analyzer │
+│ Transform FX │  │ Web Audio API  │
+└──────────────┘  └────────────────┘
+│
+▼
+┌──────────────────────────────┐
+│     Rendering Layer          │
+│  Browser (WebGL/CSS Render)  │
+└──────────────────────────────┘
+
+```
+
+---
+
+## ⚙️ How It Works
+
+1. Input 6 video sources
+2. System injects into cube faces
+3. CSS renders 3D perspective
+4. User interacts via drag/touch
+5. Optional: audio input modifies animation
 
 ---
 
@@ -69,78 +125,40 @@ Built for experimentation in:
 ```
 
 index.html
+assets/
+├── preview.png
+└── cube-demo.gif
 
-````
-
-> ⚡ Fully single-file architecture — no build tools required
+```
 
 ---
 
-## ⚙️ How to Run
+## 📦 Export Features
 
-### 1. Clone Repository
-```bash
-git clone https://github.com/whellcolor/cube.git
-````
-
-### 2. Open in Browser
-
-Simply open:
-
-```
-index.html
-```
-
-No installation required.
+- `cube-pro.html` → Full offline version
+- `cube-apk-ready.txt` → Android WebView template
 
 ---
 
-## 🎮 How It Works
+## 🌐 Web3 Feature (Optional)
 
-1. Input 6 video URLs or upload files from device
-2. Click **Generate Cube**
-3. Cube renders in 3D space
-4. Drag to rotate interactively
-5. Toggle animation or export project
+- Wallet connect via AppKit
+- Ethereum test transaction (0.0001 ETH)
+- Ethers.js browser provider
 
 ---
 
-## 📱 Mobile Support
+## 🧪 Use Cases
 
-Fully optimized for mobile devices:
+- Interactive portfolio
+- Experimental UI/UX showcase
+- 3D media player concept
+- WebView Android app prototype
+- Creative coding playground
 
-* Touch drag rotation
-* File upload support
-* Responsive UI layout
-* Lightweight single-page design
-
----
-
-## 📦 Export Options
-
-### 🧾 HTML Export
-
-Export full standalone project:
-
-```
-cube-pro.html
-```
-
-### 📲 APK Ready Export
-
-Generates WebView template:
-
-```
-cube-apk-ready.txt
-```
-
-Usage:
-
-1. Place HTML in Android `assets/`
-2. Load using WebView
-3. Build via Android Studio
 
 ---
+
 
 ## 🔊 Advanced Features
 
