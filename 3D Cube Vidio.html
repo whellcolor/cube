@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>3D Video Cube</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#000;
+    overflow:hidden;
+    perspective:1200px;
+    font-family:Arial, sans-serif;
+}
+
+/* Tombol */
+.btn{
+    position:absolute;
+    top:30px;
+    z-index:100;
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:cyan;
+    color:#000;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 0 20px cyan;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.1);
+}
+
+/* Scene */
+.scene{
+    width:300px;
+    height:300px;
+    position:relative;
+    transform-style:preserve-3d;
+    animation:spin 10s linear infinite;
+}
+
+/* Cube */
+.cube{
+    width:100%;
+    height:100%;
+    position:absolute;
+    transform-style:preserve-3d;
+}
+
+/* Semua sisi */
+.face{
+    position:absolute;
+    width:300px;
+    height:300px;
+    overflow:hidden;
+    border:2px solid rgba(255,255,255,0.2);
+    box-shadow:
+        0 0 20px cyan,
+        inset 0 0 20px cyan;
+    background:#111;
+}
+
+/* Video */
+.face video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* Posisi sisi */
+.front  { transform:translateZ(150px); }
+.back   { transform:rotateY(180deg) translateZ(150px); }
+.right  { transform:rotateY(90deg) translateZ(150px); }
+.left   { transform:rotateY(-90deg) translateZ(150px); }
+.top    { transform:rotateX(90deg) translateZ(150px); }
+.bottom { transform:rotateX(-90deg) translateZ(150px); }
+
+/* Animasi */
+@keyframes spin{
+    0%{
+        transform:rotateX(0deg) rotateY(0deg);
+    }
+    100%{
+        transform:rotateX(360deg) rotateY(360deg);
+    }
+}
+
+/* Background Glow */
+body::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:
+    radial-gradient(circle,
+    rgba(0,255,255,0.2),
+    transparent 70%);
+    animation:pulse 3s infinite alternate;
+}
+
+@keyframes pulse{
+    from{
+        transform:scale(1);
+        opacity:0.4;
+    }
+    to{
+        transform:scale(1.3);
+        opacity:1;
+    }
+}
+
+/* ===== FLOATING WALLET UI ===== */
+.floating-ui{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:10px;
+  padding:12px;
+  border-radius:16px;
+  background:rgba(10,10,20,0.6);
+  backdrop-filter:blur(15px);
+  border:1px solid rgba(0,255,255,0.2);
+  box-shadow:0 0 25px rgba(0,255,255,0.2);
+}
+
+button{
+  padding:10px 14px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+  background:linear-gradient(90deg, cyan, magenta);
+  color:#000;
+}
+
+/* responsive */
+@media(max-width:480px){
+  .scene{
+    width:170px;
+    height:170px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<button class="btn" onclick="playVideos()">
+    ▶ VIEW VIDEO
+</button>
+
+<div class="scene">
+    <div class="cube">
+
+        <!-- Ganti video sesuai keinginan -->
+
+        <div class="face front">
+            <video loop muted>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="face back">
+            <video loop muted>
+                <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="face right">
+            <video loop muted>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="face left">
+            <video loop muted>
+                <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="face top">
+            <video loop muted>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="face bottom">
+            <video loop muted>
+                <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+            </video>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function playVideos(){
+
+    const videos = document.querySelectorAll("video");
+
+    videos.forEach(video => {
+        video.play();
+    });
+
+}
+</script>
+
+<!-- WALLET UI -->
+<div class="floating-ui">
+  <appkit-button></appkit-button>
+  <button onclick="sendTx()">Send 0.0001 ETH</button>
+</div>
+
+<script type="module">
+import { createAppKit } from "https://esm.sh/@reown/appkit";
+import { EthersAdapter } from "https://esm.sh/@reown/appkit-adapter-ethers";
+import { mainnet, arbitrum } from "https://esm.sh/@reown/appkit/networks";
+import { BrowserProvider, parseEther } from "https://esm.sh/ethers";
+
+/* APPKIT */
+const modal = createAppKit({
+  adapters:[new EthersAdapter()],
+  networks:[mainnet, arbitrum],
+  projectId:"5022875ce6ee68917f103ff9b1e3422d"
+});
+
+let provider;
+
+modal.subscribeProviders((state)=>{
+  provider = state?.eip155;
+});
+
+/* SEND TX */
+window.sendTx = async () => {
+  if(!provider) return alert("Wallet belum connect");
+
+  const ethersProvider = new BrowserProvider(provider);
+  const signer = await ethersProvider.getSigner();
+
+  const tx = await signer.sendTransaction({
+    to:"0xd8519A8b8825Aa0DcC73aAD572f447FAE102fe88",
+    value:parseEther("0.0001")
+  });
+
+  alert("Transaction sent!");
+  console.log(tx);
+};
+
+/* ===== AUTO ROTATE CUBE ===== */
+const scene = document.getElementById("scene");
+
+let x = 0;
+let y = 0;
+
+function animate(){
+  x += 0.6;
+  y += 0.8;
+
+  scene.style.transform = `rotateX(${x}deg) rotateY(${y}deg)`;
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+</body>
+</html>
